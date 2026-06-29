@@ -1,0 +1,32 @@
+{
+  "_comment": "Friendly active_model key (what the Discord 'cy: model <key>' command writes to Halseth companion_settings) -> Hermes model.* config. The hermes-model-watcher re-reads this file every cycle, so edits apply live (no watcher restart). 'default' is the bare Hermes model id (no provider prefix). 'provider'/'base_url' are only needed when the key switches PROVIDER (e.g. openrouter, local); for same-provider DeepSeek rungs they are a harmless no-op rewrite. Stage 2 adds openrouter/local entries once your keys are in each profile .env.",
+
+  "deepseek-chat":     { "label": "DeepSeek Flash (everyday)",     "default": "deepseek-v4-flash", "provider": "deepseek", "base_url": "https://api.deepseek.com" },
+  "flash":             { "label": "DeepSeek Flash (everyday)",     "default": "deepseek-v4-flash", "provider": "deepseek", "base_url": "https://api.deepseek.com" },
+
+  "deepseek-reasoner": { "label": "DeepSeek Pro (deep thinking)",  "default": "deepseek-v4-pro",   "provider": "deepseek", "base_url": "https://api.deepseek.com" },
+  "pro":               { "label": "DeepSeek Pro (deep thinking)",  "default": "deepseek-v4-pro",   "provider": "deepseek", "base_url": "https://api.deepseek.com" },
+  "reasoner":          { "label": "DeepSeek Pro (deep thinking)",  "default": "deepseek-v4-pro",   "provider": "deepseek", "base_url": "https://api.deepseek.com" },
+
+  "_cloud_note": "Built-in Hermes providers carry their own base_url + key_env, so NO base_url/api_key here; the watcher strips any stale override on switch so the preset + env key are used. Provider names are Hermes-canonical (anthropic/openai-api/gemini/kimi-coding/ollama-cloud/openrouter). DeepSeek/Kimi/Claude/Ollama/Gemini-2.5 keys smoke-tested via `hermes -z` 06-28 (full agent ran in voice). The GPT-5.x and gemini-3 keys (added 06-28 to track current provider lineups -- gpt-4o/gpt-4o-mini are now legacy, GPT-5.5/5.4 are current; gemini-2.5 is still GA but gemini-3-flash is the current Flash) should be `hermes -z` smoke-tested once before relying on them in production. Gemini is a NATIVE adapter -- never give it a base_url. Mistral has no native provider so it routes via OpenRouter.",
+  "claude-opus":   { "label": "Claude Opus 4.8",       "default": "claude-opus-4-8",           "provider": "anthropic" },
+  "claude-sonnet": { "label": "Claude Sonnet 4.6",     "default": "claude-sonnet-4-6",         "provider": "anthropic" },
+  "claude-haiku":  { "label": "Claude Haiku 4.5",      "default": "claude-haiku-4-5-20251001", "provider": "anthropic" },
+  "gpt-5.5":       { "label": "GPT-5.5 (flagship)",    "default": "gpt-5.5",                   "provider": "openai-api" },
+  "gpt-5.4":       { "label": "GPT-5.4",               "default": "gpt-5.4",                   "provider": "openai-api" },
+  "gpt-5.4-mini":  { "label": "GPT-5.4 mini",          "default": "gpt-5.4-mini",              "provider": "openai-api" },
+  "gpt-4o":        { "label": "GPT-4o (legacy)",       "default": "gpt-4o",                    "provider": "openai-api" },
+  "gpt-4o-mini":   { "label": "GPT-4o mini (legacy)",  "default": "gpt-4o-mini",               "provider": "openai-api" },
+  "kimi-k2":       { "label": "Kimi K2.6",             "default": "kimi-k2.6",                 "provider": "kimi-coding" },
+  "kimi-k2.5":     { "label": "Kimi K2.5",             "default": "kimi-k2.5",                 "provider": "kimi-coding" },
+  "gemini-3":      { "label": "Gemini 3 Flash",        "default": "gemini-3-flash",            "provider": "gemini" },
+  "gemini":        { "label": "Gemini 2.5 Flash",      "default": "gemini-2.5-flash",          "provider": "gemini" },
+  "gemini-pro":    { "label": "Gemini 2.5 Pro",        "default": "gemini-2.5-pro",            "provider": "gemini" },
+  "ollama":        { "label": "Ollama gpt-oss 120B",   "default": "gpt-oss:120b",              "provider": "ollama-cloud" },
+  "ollama-glm":    { "label": "Ollama GLM-5.2",        "default": "glm-5.2",                   "provider": "ollama-cloud" },
+  "mistral-large": { "label": "Mistral Large (via OpenRouter)", "default": "mistralai/mistral-large", "provider": "openrouter" },
+
+  "_local_note": "LM Studio on your workstation, reached via the reverse tunnel at VPS 127.0.0.1:11435. provider 'custom' + base_url + a dummy api_key (LM Studio ignores it). Keys match the bot's ALL_MODELS so /model <key> reaches them. Model must be loaded/JIT-available in LM Studio.",
+  "gemma-local":       { "label": "Gemma 4 E4B (local)",          "default": "google/gemma-4-e4b",                   "provider": "custom", "base_url": "http://127.0.0.1:11435/v1", "api_key": "lm-studio" },
+  "nemo-local":        { "label": "Mistral Nemo (local)",         "default": "mistralai/mistral-nemo-instruct-2407", "provider": "custom", "base_url": "http://127.0.0.1:11435/v1", "api_key": "lm-studio" }
+}

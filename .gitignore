@@ -1,0 +1,13 @@
+# real config / secrets (never commit)
+.env
+*.env
+!.env.example
+
+# watcher runtime state
+.model-watcher-state.json
+
+# python / OS cruft
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

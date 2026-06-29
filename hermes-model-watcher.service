@@ -1,0 +1,16 @@
+[Unit]
+Description=Hermes model-switch watcher (Halseth active_model -> hermes config.default + gateway restart)
+Documentation=https://github.com/neurospicyexe/nullsafe-hermes-lever
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 %h/nullsafe-hermes-lever/hermes-model-watcher.py
+Restart=always
+RestartSec=10
+# Reads each profile's Halseth secret + edits each profile's config.yaml + restarts the
+# per-companion hermes-gateway user units (so it must run as the same --user manager).
+
+[Install]
+WantedBy=default.target
