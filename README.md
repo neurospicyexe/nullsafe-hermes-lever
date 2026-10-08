@@ -1,5 +1,8 @@
 # nullsafe-hermes-lever
 
+> **ORPHANED 2026-10-08:** this repo is a frozen generic copy. The live watcher and model map are
+> maintained in `nullsafe-triad-skills/ops/` (the gateways run that copy); do not edit here.
+
 **Switch which model a [Hermes](https://github.com/elsbrock/hermes) gateway uses — from chat, with no SSH.**
 
 Hermes pins each profile's model in its `config.yaml` (`model.default`), and its OpenAI-compatible
